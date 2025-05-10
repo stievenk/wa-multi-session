@@ -17,7 +17,8 @@ export const phoneToJid = ({
   if (!to) throw new WhatsappError('parameter "to" is required');
   let number = to.toString();
   if (isGroup) {
-    number = number.replace(/\s|[+]|[-]/gim, "");
+    // Remove minus [-], karena ada beberapa group ID menggunakan tanda minus : 23321xxx-232xxx@g.us
+    number = number.replace(/\s|[+]/gim, "");
     if (!number.includes("@g.us")) number = number + "@g.us";
   } else {
     number = number.replace(/\s|[+]|[-]/gim, "");
