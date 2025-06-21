@@ -260,6 +260,9 @@ export const getAllSession = (): string[] => Array.from(sessions.keys());
 export const getSession = (key: string): WASocket | undefined =>
   sessions.get(key) as WASocket;
 
+export const isRunning = (key:string) => {
+  return isSessionExistAndRunning(key);
+}
 const isSessionExistAndRunning = (sessionId: string): boolean => {
   if (
     fs.existsSync(path.resolve(CREDENTIALS.DIR_NAME)) &&
